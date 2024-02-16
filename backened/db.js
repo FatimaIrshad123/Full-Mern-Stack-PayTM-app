@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://Fatima:Fatima@cluster0.7bunznc.mongodb.net/payTm-app')
+mongoose.connect('mongodb url/payTm-app')
 
 // Create a Schema for Users
 const userSchema = new mongoose.Schema({
