@@ -1,4 +1,3 @@
-// backend/routes/account.js
 const express = require('express');
 const { Account, User } = require('../db');
 const { authMiddleware } = require('../middleware');
@@ -11,7 +10,6 @@ router.get('/',authMiddleware,async(req,res) => {
         balance = account[i].balance
     }
     let user = await User.find({_id : req.userId})
-    // console.log(user)
     let username = ''
     for (let i in user){
         username = user[i].username
@@ -24,17 +22,12 @@ router.get('/allUser',authMiddleware,async(req,res)=> {
     res.json(allUsers)
 })
 
-
-
 router.post('/transfer',authMiddleware,async(req,res)=>{
     const amount = req.body.amount;
     const to = req.body.to;
-    // const from = req.body.from;
     try{
         let fromUser = await User.findOne({_id : req.userId})
-        // console.log(fromUser)
         let senderAccountInfo = await Account.findOne({userId : fromUser._id})
-        // console.log(senderAccountInfo)
         if (senderAccountInfo.balance < amount){
             return res.json({msg : 'Insufficent balance'})
         }await Account.updateOne(senderAccountInfo ,{balance : senderAccountInfo.balance-amount})
@@ -43,9 +36,7 @@ router.post('/transfer',authMiddleware,async(req,res)=>{
     }    
     try{
         let toRecipent = await User.findOne({username : to})
-        // console.log(toRecipent)
         let recipentAccountInfo = await Account.findOne({userId : toRecipent._id})
-        // console.log(recipentAccountInfo)
        await Account.updateOne(recipentAccountInfo,{balance : recipentAccountInfo.balance+amount})
     }catch{
         return res.json({msg : 'Invalid Recipent'})
