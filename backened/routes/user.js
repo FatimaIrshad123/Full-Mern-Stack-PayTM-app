@@ -70,7 +70,6 @@ router.put('/user/:id',authMiddleware,async(req,res)=>{
 router.post('/:id',authMiddleware,async(req,res)=>{
     const id = req.params.id;
     const user = await User.find({_id : id}) 
-    // console.log(user)
     res.json(user)
 })
 
@@ -89,7 +88,6 @@ router.get("/bulk", async (req, res) => {
             }
           }]
     })
-    // console.log(users)
     res.json({
         user: users.map(user => ({
             username: user.username,
