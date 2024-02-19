@@ -1,5 +1,4 @@
-const jwtSecret = 'fatima'
-
+const jwtSecret = 'secret'
 module.exports = {
     jwtSecret
 };
