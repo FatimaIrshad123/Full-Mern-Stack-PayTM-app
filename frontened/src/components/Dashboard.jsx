@@ -14,15 +14,12 @@ export default function Dashboard(){
         function  callback1(data) {
             setUser(data.user)
             setBalance(data.balance)
-        }
-        function callback2(res) {
+        }function callback2(res) {
             res.json().then(callback1)
-        }
-        fetch('http://localhost:3000/api/r1/account',{
+        }fetch('http://localhost:3000/api/r1/account',{
             headers : {'authorization':localStorage.getItem('token') }
         }).then(callback2)
     },[])
-  
     useEffect(() => {
         function  callback1(response) {
             let x = (response.data.user)
@@ -30,23 +27,22 @@ export default function Dashboard(){
             <div className="flex p-5 m-2 justify-between" key={e._id}>
                 <h3 className="font-semibold">{e.username}</h3>
                 <Button variant="contained" style={{backgroundColor:'black'}}>
-                    <Link to={'/sendmoney'}>Send Money</Link></Button>
+                    <Link to={'/sendmoney'}>Send Money</Link>
+                </Button>
             </div>
            )}))
          }
-        
         axios.get('http://localhost:3000/api/r1/user/bulk?filter='+filter,{
              headers : {'authorization':localStorage.getItem('token') }
-     } ).then(callback1)
+     }).then(callback1)
     },[filter])
     return (
-        <div>
-           
+        <div>     
             <div className='flex space-x-96 border-2 border-spacing-4 p-6 m-6 rounded-lg shadow-lg justify-between'>
                 <div>
                     <h2 className="font-bold text-2xl">Payment App</h2>
                 </div>
-                <div className=''>
+                <div>
                     <h4 className="font-semibold">Hello {user}</h4>
                 </div>
             </div>
