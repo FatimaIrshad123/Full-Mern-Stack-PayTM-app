@@ -1,7 +1,5 @@
 import {Button} from '@mui/material';
-import { useState } from 'react';
-
-                   
+import { useState } from 'react';                  
 
 export default function SendMoney(){
     const [name,setName] = useState('')
@@ -20,13 +18,13 @@ export default function SendMoney(){
                     <br/>
                     <Button variant="contained" style={{backgroundColor:'green',marginBottom:16}} 
                     onClick={() => {
-                function callback2(data){
-                        alert(data.msg)
-                    }
-                    function callback1(res){
-                        res.json().then(callback2)
-                    }
-                    fetch('http://localhost:3000/api/r1/account/transfer',{
+                        function callback2(data){
+                            alert(data.msg)
+                        }
+                        function callback1(res){
+                            res.json().then(callback2)
+                        }
+                      fetch('http://localhost:3000/api/r1/account/transfer',{
                         method : 'POST',
                         headers : {
                              'Content-Type': 'application/json',
@@ -34,11 +32,11 @@ export default function SendMoney(){
                         body : JSON.stringify({
                             to : name,
                             amount : amount
-                        })
-                         }).then(callback1)
-                    }}
-                    >Initiate Transaction</Button>
-            </center>
+                            })
+                           }).then(callback1)
+                        }}>Initiate Transaction
+                    </Button>
+                </center>
             </div>
         </div>
     )
